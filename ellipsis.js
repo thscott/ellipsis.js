@@ -96,14 +96,14 @@
       this.prop = {
         get height(){
           var viewportOffset = element.getBoundingClientRect();
-          return parseInt(viewportOffset.bottom - viewportOffset.top, 10);
+          return parseFloat(viewportOffset.bottom - viewportOffset.top, 10);
         },
         get lineheight(){
           var lineh = getComputedStyle(element).getPropertyValue("line-height");
           if(String('normal|initial|inherit').indexOf(lineh) > -1){ //very specific case
-            lineh = parseInt(getComputedStyle(element).getPropertyValue("font-size"), 10) + 2;
+            lineh = parseFloat(getComputedStyle(element).getPropertyValue("font-size"), 10) + 2;
           }
-          return parseInt(lineh, 10);
+          return parseFloat(lineh, 10);
         }
       };
     },
