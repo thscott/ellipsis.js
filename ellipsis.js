@@ -173,7 +173,7 @@
     },
     simpleText: function(element){
       var childText = element.childNodes[0].nodeValue;
-      while(this.prop.height > (this.prop.lineheight * this.lines.current)){
+      while(this.isNotCorrect()){
         element.childNodes[0].nodeValue = childText.slice(0, -1);
         childText = element.childNodes[0].nodeValue;
       }
@@ -190,7 +190,7 @@
       }
     },
     isNotCorrect: function(){
-      return this.prop.height > (this.prop.lineheight * this.lines.current);
+      return this.prop.height > (this.prop.lineheight * this.lines.current + 0.01);
     },
     processBreak: function(dOne, dTwo, fix){
       var r = this.breakWord(dOne.innerHTML || dOne.nodeValue, dTwo.innerHTML || dTwo.nodeValue, fix);
@@ -222,7 +222,7 @@
           if(domChildren[i].nodeType === 3){
             domChildren[i].nodeValue = displayOrigin;
             childText = domChildren[i].nodeValue;
-            while(this.prop.height > (this.prop.lineheight * this.lines.current)){
+            while(this.isNotCorrect()){
               domChildren[i].nodeValue = childText.slice(0, -1);
               childText = domChildren[i].nodeValue;
             }
@@ -253,7 +253,7 @@
           } else {
             domChildren[i].style.display = displayOrigin;
             childText = domChildren[i].innerHTML;
-            while(this.prop.height > (this.prop.lineheight * this.lines.current)){
+            while(this.isNotCorrect()){
               domChildren[i].innerText = childText.slice(0, -1);
               childText = domChildren[i].innerText;
             }
